@@ -8,48 +8,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .chat-container {
-            max-width: 600px;
-            margin: 50px auto;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            background-color: #f8f9fa;
+          max-width: 600px;
         }
         .chat-history {
-            height: 400px;
-            overflow-y: scroll;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 10px;
-            background-color: #fff;
-            margin-bottom: 20px;
-        }
-        .message {
-            margin-bottom: 10px;
-        }
-        .message .message-content {
-            display: inline-block;
-            padding: 10px;
-            border-radius: 8px;
-            background-color: #e9ecef;
-        }
-        .message.user .message-content {
-            background-color: #007bff;
-            color: #fff;
+          height: 400px;
         }
     </style>
 </head>
 <body>
 
-<div class="chat-container">
+<div class="rounded border chat-container bg-light p-3 my-5 mx-auto">
     <div class="d-flex justify-content-center">
       <img src="/static/logo-ingenio.webp">
     </div>
-    <div class="chat-history" id="chatHistory">
+    <div class="rounded border overflow-y-scroll chat-history p-1 mb-3 bg-white" id="chatHistory">
         <!-- Chat messages will be appended here -->
     </div>
     <div class="input-group mb-3">
-        <input type="text" class="form-control" id="messageInput" placeholder="Type a message...">
+        <input type="text" class="form-control" id="messageInput" placeholder="¿Cómo puedo ayudarte?">
         <button class="btn btn-primary" type="button" id="sendButton">
             <i class="fas fa-paper-plane"></i> Send
         </button>
@@ -58,12 +34,17 @@
 
 <script>
 
-  function addMessage(msg) {
+  function addMessage(msg, is_user) {
     const chatHistory = document.getElementById('chatHistory');
     const message = document.createElement('div');
-    message.className = 'message user';
+    message.className = 'pb-2';
     const messageContent = document.createElement('div');
-    messageContent.className = 'message-content';
+    messageContent.className = 'text-light rounded p-3 d-inline-block';
+    if (is_user) {
+      messageContent.classList.add('bg-primary');
+    } else {
+      messageContent.classList.add('bg-secondary');
+    }
     messageContent.textContent = msg;
     message.appendChild(messageContent);
     chatHistory.appendChild(message);
@@ -74,7 +55,7 @@
         const chatHistory = document.getElementById('chatHistory');
 
         if (messageInput.value.trim() !== '') {
-            addMessage(messageInput.value.trim());
+            addMessage(messageInput.value.trim(), true);
             chatHistory.scrollTop = chatHistory.scrollHeight;
 
             fetch('/prompt', {
@@ -86,7 +67,7 @@
             }).then(response => response.json())
             .then((data) => {
                 messageInput.value = '';
-                addMessage(data.response);
+                addMessage(data.response, false);
             });
         }
     });
