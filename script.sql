@@ -99,7 +99,24 @@ INSERT INTO Camion (CamiOnID, Placa, Modelo, Capacidad) VALUES
 
 INSERT INTO Conductor (ConductorID, Nombre, Licencia) VALUES
 (1, 'Juan Pérez', 'LIC123'),
-(2, 'Luis Gómez', 'LIC456');
+(2, 'Luis Gómez', 'LIC456'),
+(3, 'María López', 'XYZ987654'),
+(4, 'Carlos Gómez', 'JKL654321'),
+(5, 'Ana Martínez', 'MNO432198'),
+(6, 'Luis Fernández', 'PQR567890'),
+(7, 'Laura González', 'STU123789'),
+(8, 'José Ramírez', 'VWX789654'),
+(9, 'Marta Sánchez', 'BCD987321'),
+(10, 'Pedro Torres', 'EFG123987'),
+(11, 'Sofía Díaz', 'HIJ456321'),
+(12, 'Miguel Herrera', 'KLM654123'),
+(13, 'Paula Castro', 'NOP432765'),
+(14, 'Roberto Ruiz', 'QRS567123'),
+(15, 'Julia Morales', 'TUV789321'),
+(16, 'Alejandro Navarro', 'WXY123654'),
+(17, 'Isabel Rivas', 'ZAB987456'),
+(18, 'Diego Vega', 'CDE432198'),
+(19, 'Valentina Ortiz', 'FGH654789');
 
 INSERT INTO Transporte (TransporteID, CosechaID, FechaTransporte, CamionID, ConductorID) VALUES
 (1, 1, '2023-12-17', 1, 1),
