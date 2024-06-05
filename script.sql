@@ -93,7 +93,7 @@ INSERT INTO Cosecha (CosechaID, CultivoID, FechaCosecha, CantidadToneladas) VALU
 (1, 1, '2023-12-16', 120.5),
 (2, 2, '2023-12-01', 180.0);
 
-INSERT INTO Camion (CamiOnID, Placa, Modelo, Capacidad) VALUES
+INSERT INTO Camion (CamionID, Placa, Modelo, Capacidad) VALUES
 (1, 'ABC123', 'Modelo X', 15.0),
 (2, 'DEF456', 'Modelo Y', 20.0);
 
