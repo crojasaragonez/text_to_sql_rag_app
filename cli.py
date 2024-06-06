@@ -6,8 +6,8 @@ from llama_index.core.indices.struct_store import NLSQLTableQueryEngine
 load_dotenv()
 
 TABLES_TO_SCAN = [
-    "Campo", "Cultivo", "Cosecha", "Camion", "Conductor", "Transporte",
-    "Ingenio", "Proceso", "Producto",
+    "Camion", "Campo", "Conductor", "Cosecha", "Cultivo", "Ingenio", "Proceso",
+    "Produccion", "Producto", "Transporte",
 ]
 
 engine = create_engine(os.getenv('DB_URI'))

@@ -7,8 +7,8 @@ from flask import Flask, render_template, request
 load_dotenv()
 
 TABLES_TO_SCAN = [
-    "Campo", "Cultivo", "Cosecha", "Camion", "Conductor", "Transporte",
-    "Ingenio", "Proceso", "Producto",
+    "Camion", "Campo", "Conductor", "Cosecha", "Cultivo", "Ingenio", "Proceso",
+    "Produccion", "Producto", "Transporte",
 ]
 
 app = Flask(__name__)
