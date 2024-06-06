@@ -120,17 +120,17 @@ INSERT INTO Transporte (TransporteID, CosechaID, FechaTransporte, CamionID, Cond
 (2, 2, '2023-12-02', 2, 2);
 
 INSERT INTO Proceso (ProcesoID, Nombre) VALUES
-(1, 'Preparación de caña'),
-(2, 'Molienda'),
-(3, 'Generación de vapor y electricidad'),
-(4, 'Calentamiento'),
-(5, 'Clarificación'),
-(6, 'Filtración'),
-(7, 'Evaporación'),
-(8, 'Cristalización y Centrifugación'),
-(9, 'Secado'),
-(10, 'Bio-Destilado'),
-(11, 'Compostaje');
+(1, 'preparación de caña'),
+(2, 'molienda'),
+(3, 'generación de vapor y electricidad'),
+(4, 'calentamiento'),
+(5, 'clarificación'),
+(6, 'filtración'),
+(7, 'evaporación'),
+(8, 'cristalización y centrifugación'),
+(9, 'secado'),
+(10, 'bio-destilado'),
+(11, 'compostaje');
 
 INSERT INTO Producto (ProductoID, Nombre, UnidadMedida) VALUES
 (1, 'Azúcar blanco corriente', 'Toneladas'),

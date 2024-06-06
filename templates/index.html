@@ -8,28 +8,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .chat-container {
-          max-width: 600px;
+          width: 35vw;
         }
         .chat-history {
-          height: 400px;
+          height: 70vh;
         }
     </style>
 </head>
 <body>
 
 <div class="rounded border chat-container bg-light p-3 my-5 mx-auto">
-    <div class="d-flex justify-content-center">
-      <img src="/static/logo-ingenio.webp">
-    </div>
-    <div class="rounded border overflow-y-scroll chat-history p-1 mb-3 bg-white" id="chatHistory">
-        <!-- Chat messages will be appended here -->
-    </div>
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" id="messageInput" placeholder="¿Cómo puedo ayudarte?">
-        <button class="btn btn-primary" type="button" id="sendButton">
-            <i class="fas fa-paper-plane"></i> Send
-        </button>
-    </div>
+  <div class="d-flex justify-content-center">
+    <img src="/static/logo-ingenio.webp">
+  </div>
+  <div class="rounded border overflow-y-scroll chat-history p-1 mb-3 bg-white" id="chatHistory">
+    <!-- Chat messages will be appended here -->
+  </div>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" id="messageInput" placeholder="¿Cómo puedo ayudarte?" autofocus>
+    <button class="btn btn-primary" type="button" id="sendButton">
+      <i class="fas fa-paper-plane"></i> Send
+    </button>
+  </div>
 </div>
 
 <script>
@@ -50,35 +50,33 @@
     chatHistory.appendChild(message);
   }
 
-    document.getElementById('sendButton').addEventListener('click', function() {
-        const messageInput = document.getElementById('messageInput');
-        const chatHistory = document.getElementById('chatHistory');
+  document.getElementById('sendButton').addEventListener('click', function() {
+    const messageInput = document.getElementById('messageInput');
+    const chatHistory = document.getElementById('chatHistory');
 
-        if (messageInput.value.trim() !== '') {
-            addMessage(messageInput.value.trim(), true);
-            chatHistory.scrollTop = chatHistory.scrollHeight;
+    if (messageInput.value.trim() !== '') {
+      addMessage(messageInput.value.trim(), true);
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+      fetch('/prompt', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ query: messageInput.value })
+      }).then(response => response.json())
+      .then((data) => {
+        messageInput.value = '';
+        addMessage(data.response, false);
+      });
+    }
+  });
 
-            fetch('/prompt', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ query: messageInput.value })
-            }).then(response => response.json())
-            .then((data) => {
-                messageInput.value = '';
-                addMessage(data.response, false);
-            });
-        }
-    });
-
-    document.getElementById('messageInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            document.getElementById('sendButton').click();
-        }
-    });
+  document.getElementById('messageInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      document.getElementById('sendButton').click();
+    }
+  });
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
