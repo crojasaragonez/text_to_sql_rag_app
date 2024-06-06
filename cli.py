@@ -6,7 +6,7 @@ from llama_index.core.indices.struct_store import NLSQLTableQueryEngine
 load_dotenv()
 
 TABLES_TO_SCAN = [
-    "Camion", "Campo", "Conductor", "Cosecha", "Cultivo", "Ingenio", "Proceso",
+    "Camion", "Campo", "Conductor", "Cosecha", "Cultivo", "Proceso",
     "Produccion", "Producto", "Transporte",
 ]
 

@@ -4,7 +4,6 @@ DROP TABLE IF EXISTS Cosecha;
 DROP TABLE IF EXISTS Camion;
 DROP TABLE IF EXISTS Conductor;
 DROP TABLE IF EXISTS Transporte;
-DROP TABLE IF EXISTS Ingenio;
 DROP TABLE IF EXISTS Proceso;
 DROP TABLE IF EXISTS Producto;
 DROP TABLE IF EXISTS Produccion;
@@ -57,12 +56,6 @@ CREATE TABLE Transporte (
     FOREIGN KEY (ConductorID) REFERENCES Conductor(ConductorID)
 );
 
-CREATE TABLE Ingenio (
-    IngenioID INT PRIMARY KEY,
-    Nombre VARCHAR(255),
-    Ubicacion VARCHAR(255)
-);
-
 CREATE TABLE Producto (
     ProductoID INT PRIMARY KEY,
     Nombre VARCHAR(255),
@@ -71,9 +64,7 @@ CREATE TABLE Producto (
 
 CREATE TABLE Proceso (
     ProcesoID INT PRIMARY KEY,
-    Nombre VARCHAR(255),
-    IngenioID INT,
-    FOREIGN KEY (IngenioID) REFERENCES Ingenio(IngenioID)
+    Nombre VARCHAR(255)
 );
 
 CREATE TABLE Produccion (
@@ -128,14 +119,18 @@ INSERT INTO Transporte (TransporteID, CosechaID, FechaTransporte, CamionID, Cond
 (1, 1, '2023-12-17', 1, 1),
 (2, 2, '2023-12-02', 2, 2);
 
-INSERT INTO Ingenio (IngenioID, Nombre, Ubicacion) VALUES
-(1, 'Ingenio Central', 'Ciudad Central');
-
-INSERT INTO Proceso (ProcesoID, Nombre, IngenioID) VALUES
-(1, 'Molienda', 1),
-(2, 'Generación de energía', 1),
-(3, 'Bio-Destilado', 1),
-(4, 'Compostaje', 1);
+INSERT INTO Proceso (ProcesoID, Nombre) VALUES
+(1, 'Preparación de caña'),
+(2, 'Molienda'),
+(3, 'Generación de vapor y electricidad'),
+(4, 'Calentamiento'),
+(5, 'Clarificación'),
+(6, 'Filtración'),
+(7, 'Evaporación'),
+(8, 'Cristalización y Centrifugación'),
+(9, 'Secado'),
+(10, 'Bio-Destilado'),
+(11, 'Compostaje');
 
 INSERT INTO Producto (ProductoID, Nombre, UnidadMedida) VALUES
 (1, 'Azúcar blanco corriente', 'Toneladas'),
@@ -149,12 +144,12 @@ INSERT INTO Producto (ProductoID, Nombre, UnidadMedida) VALUES
 (9, 'Nutri-Humic', 'Sacos 40 kg');
 
 INSERT INTO Produccion (ProduccionID, ProductoID, ProcesoID, FechaInicio, FechaFin, Cantidad) VALUES
-(1, 1, 1, '2023-01-01', '2023-12-31', 753220.41),
-(2, 2, 1, '2023-01-01', '2023-12-31', 5089.33),
-(3, 3, 1, '2023-01-01', '2023-12-31', 238883.22),
-(4, 4, 1, '2023-01-01', '2023-12-31', 118817.60),
-(5, 5, 1, '2023-01-01', '2023-12-31', 55256.60),
-(6, 6, 2, '2023-01-01', '2023-12-31', 203520),
-(7, 7, 3, '2023-01-01', '2023-12-31', 30000),
-(8, 8, 4, '2023-01-01', '2023-12-31', 8521),
-(9, 9, 4, '2023-01-01', '2023-12-31', 4385);
+(1, 1, 2, '2023-01-01', '2023-12-31', 753220.41),
+(2, 2, 2, '2023-01-01', '2023-12-31', 5089.33),
+(3, 3, 2, '2023-01-01', '2023-12-31', 238883.22),
+(4, 4, 2, '2023-01-01', '2023-12-31', 118817.60),
+(5, 5, 2, '2023-01-01', '2023-12-31', 55256.60),
+(6, 6, 3, '2023-01-01', '2023-12-31', 203520),
+(7, 7, 10, '2023-01-01', '2023-12-31', 30000),
+(8, 8, 11, '2023-01-01', '2023-12-31', 8521),
+(9, 9, 12, '2023-01-01', '2023-12-31', 4385);
